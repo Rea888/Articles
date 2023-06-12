@@ -9,7 +9,7 @@ class Database
         $db_host = "mysql";
         $db_name = "cms";
         $db_user = "cms_www";
-        $db_pw = "6VCVBn16KKCXA)3m";
+        $db_pw = "*******";
         $db_port = "3306";
 
         $dsn = 'mysql:host=' . $db_host . ';port=' . $db_port . ';dbname=' . $db_name . ';charset=utf8';
