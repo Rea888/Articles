@@ -8,7 +8,7 @@ class User
     public $password;
 
     public static function authenticate($conn, $username, $password)
-    { // we will not have an instance of a user object
+    {
 
         $sql = "SELECT * FROM user WHERE username = :username";
 
