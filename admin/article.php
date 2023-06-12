@@ -40,7 +40,7 @@ if (isset($_GET['id'])) {
         <p><?= htmlspecialchars($article->content); ?></p>
     </article>
 
-    <a href="edit_article.php?id=<?= $article->id; ?>">Edit</a> <!-- However it said editing,... here is just selecting an article that will be edited !-->
+    <a href="edit_article.php?id=<?= $article->id; ?>">Edit</a>
     <a class="delete" href="delete_article.php?id=<?= $article->id; ?>">Delete</a>
     <a href="edit_article_image.php?id=<?= $article->id; ?>">Edit image</a>
 
