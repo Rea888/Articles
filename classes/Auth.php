@@ -4,7 +4,7 @@ class Auth
 {
 
     public static function isLoggedIn()
-    { //not going to call this method on an instancie of this class that is why it is static
+    {
 
         return isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in'];
     }
