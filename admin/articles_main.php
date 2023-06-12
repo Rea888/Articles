@@ -7,7 +7,7 @@ $conn = require '../includes/db.php';
 
 $paginator = new Pagination($_GET['page'] ?? 1, 6, Article::getTotal($conn));
 
-$articles = Article::getPage($conn, $paginator->limit, $paginator->offset); //static functions called in this way
+$articles = Article::getPage($conn, $paginator->limit, $paginator->offset);
 
 
 ?>
