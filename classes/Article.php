@@ -9,9 +9,9 @@ class Article
     public $publisched_at;
     public $image_file;
     public $error = [];
-    //__set(), __get()
+    
     public static function getAll($conn)
-    { //static because this method won't be acting upon an idividual article object
+    {
 
         $sql = "SELECT * FROM article ORDER BY title;";
 
@@ -107,7 +107,7 @@ class Article
     }
 
     public function update($conn)
-    {  // it is not static beacuse it acts on an instance of the class
+    {
 
         if ($this->validate()) {
 
@@ -176,7 +176,7 @@ class Article
     {
 
         if ($this->title == '') {
-            $this->error[] = 'Title is required'; //$this->error[] is the calling because error now is a property
+            $this->error[] = 'Title is required';
         }
 
         if ($this->content == '') {
@@ -203,7 +203,7 @@ class Article
         $sql = "DELETE FROM article WHERE id= :id";
         $stmt = $conn->prepare($sql);
 
-        $stmt->bindValue(':id', $this->id, PDO::PARAM_INT); // $this->calling beacuse it is not static so it points to a variable of the current class
+        $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
 
 
         return $stmt->execute();
