@@ -2,11 +2,12 @@
 
 require 'includes/init.php';
 
-$conn = require 'includes/db.php';
 
+$conn = require 'includes/db.php';
 $paginator = new Pagination($_GET['page'] ?? 1, 4, Article::getTotal($conn, true));
 
 $articles = Article::getPage($conn, $paginator->limit, $paginator->offset, true); //static functions called in this way
+
 
 ?>
 <?php require 'includes/header.php'; ?>
@@ -23,7 +24,7 @@ $articles = Article::getPage($conn, $paginator->limit, $paginator->offset, true)
                     <h2><a href="article.php?id=<?= $article['id']; ?>"><?= htmlspecialchars($article ['title']); ?></a>
                     </h2>
 
-                    <time datetime="<?= $article['publisched_at'] ?>"><?php $dateTime = new DateTime($article['publisched_at']);
+                    <time datetime="<?= $article['published_at'] ?>"><?php $dateTime = new DateTime($article['publisched_at']);
                         echo $dateTime->format("j F, Y"); ?></time>
 
                     <?php if ($article['category_names']) : ?>

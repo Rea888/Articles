@@ -21,8 +21,8 @@ if (isset($_GET['id'])) {
     <article>
         <h2><?= htmlspecialchars($article->title); ?></h2>
 
-        <?php if ($article->publisched_at) : ?>
-            <time><?= $article->publisched_at ?></time>
+        <?php if ($article->published_at) : ?>
+            <time><?= $article->published_at ?></time>
         <?php else : ?>
             Unpublished
         <?php endif; ?>

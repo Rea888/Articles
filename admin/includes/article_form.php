@@ -26,7 +26,7 @@
 
     <div>
         <label for="publisched_at">Publication date and time</label><input type="datetime" name="publisched_at"
-                                                                           id="publisched_at"
+                                                                           id="published_at"
                                                                            placeholder="YYYY-mm-dd HH:ii:ss"
                                                                            value="<?= htmlspecialchars($article->publisched_at); ?>">
     </div>

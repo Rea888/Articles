@@ -39,7 +39,7 @@ $("button.publish").on("click", function (e) {
     var id = $(this).data('id');
     var button = $(this);
     $.ajax({
-        url: '/article/admin/publish_article.php',
+        url: '/admin/publish_article.php',
         type: 'POST',
         data: {id: id}
     })

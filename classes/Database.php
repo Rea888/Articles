@@ -6,10 +6,10 @@ class Database
     public function getConn()
     {
 
-        $db_host = "mysql";
+        $db_host = "127.0.0.1";
         $db_name = "cms";
-        $db_user = "cms_www";
-        $db_pw = "6VCVBn16KKCXA)3m";
+        $db_user = "rea";
+        $db_pw = "password";
         $db_port = "3306";
 
         $dsn = 'mysql:host=' . $db_host . ';port=' . $db_port . ';dbname=' . $db_name . ';charset=utf8';

@@ -33,8 +33,8 @@ $articles = Article::getPage($conn, $paginator->limit, $paginator->offset);
                     <a href="article.php?id=<?= $article['id']; ?>"><?= htmlspecialchars($article ['title']); ?></a>
                 </td>
                 <td>
-                    <?php if ($article['publisched_at']) : ?>
-                        <time><?= $article['publisched_at'] ?></time>
+                    <?php if ($article['published_at']) : ?>
+                        <time><?= $article['published_at'] ?></time>
                     <?php else : ?>
                         Unpublished
                         <button class="publish" data-id="<?= $article['id'] ?>">Publish</button>

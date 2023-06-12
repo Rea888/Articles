@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $article->title = $_POST['title'];
     $article->content = $_POST['content'];
-    $article->publisched_at = $_POST['publisched_at'];
+    $article->publisched_at = $_POST['published_at'];
 
     $category_ids = $_POST['category'] ?? [];
 
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $article->setCategories($conn, $category_ids);
 
-        Url::redirect("/article/admin/article.php?id={$article->id}");
+        Url::redirect("/admin/article.php?id={$article->id}");
     }
 }
 

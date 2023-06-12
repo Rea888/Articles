@@ -19,7 +19,7 @@ if (isset($_GET['id'])) {
     <article>
         <h2><?= htmlspecialchars($article->title); ?></h2>
 
-        <time datetime="<?= $article->publisched_at ?>"><?php $dateTime = new DateTime($article->publisched_at);
+        <time datetime="<?= $article->published_at ?>"><?php $dateTime = new DateTime($article->published_at);
             echo $dateTime->format("j F, Y"); ?></time>
 
             <?php if ($article->category_name) : ?>

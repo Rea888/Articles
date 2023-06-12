@@ -9,7 +9,7 @@ class Article
     public $publisched_at;
     public $image_file;
     public $error = [];
-    
+
     public static function getAll($conn)
     {
 
@@ -23,7 +23,8 @@ class Article
     public static function getPage($conn, $limit, $offset, $only_publisched = false)
     {
 
-        $condition = $only_publisched ? ' WHERE publisched_at IS NOT NULL' : '';
+
+        $condition = $only_publisched ? ' WHERE published_at IS NOT NULL' : '';
 
         $sql = "SELECT a.*, category.name AS category_name FROM (SELECT * FROM article $condition ORDER BY title LIMIT :limit OFFSET :offset) AS a LEFT JOIN article_category ON a.id = article_category.article_id LEFT JOIN category ON article_category.category_id = category.id";
 
@@ -33,6 +34,7 @@ class Article
         $stmt->execute();
 
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
         $articles = [];
 
@@ -52,6 +54,7 @@ class Article
 
             $previous_id = $article_id;
         }
+
         return $articles;
     }
 
@@ -79,7 +82,7 @@ class Article
         $sql = "SELECT article.* , GROUP_CONCAT(category.name SEPARATOR ', ') AS category_name FROM article LEFT JOIN article_category ON article.id = article_category.article_id LEFT JOIN category ON article_category.category_id = category.id WHERE article.id = :id";
 
         if ($only_publisched) {
-            $sql .= ' AND article.publisched_at IS NOT NULL';
+            $sql .= ' AND article.published_at IS NOT NULL';
         }
 
         $stmt = $conn->prepare($sql);
@@ -111,7 +114,7 @@ class Article
 
         if ($this->validate()) {
 
-            $sql = "UPDATE article SET title= :title, content= :content, publisched_at= :publisched_at WHERE id= :id";
+            $sql = "UPDATE article SET title= :title, content= :content, published_at= :published_at WHERE id= :id";
 
             $stmt = $conn->prepare($sql);
 
@@ -119,10 +122,10 @@ class Article
             $stmt->bindValue(':title', $this->title, PDO::PARAM_STR);
             $stmt->bindValue(':content', $this->content, PDO::PARAM_STR);
             if ($this->publisched_at == '') {
-                $stmt->bindValue(':publisched_at', null, PDO::PARAM_NULL);
+                $stmt->bindValue(':published_at', null, PDO::PARAM_NULL);
 
             } else {
-                $stmt->bindValue(':publisched_at', $this->publisched_at, PDO::PARAM_STR);
+                $stmt->bindValue(':published_at', $this->publisched_at, PDO::PARAM_STR);
             }
 
             return $stmt->execute();
@@ -215,17 +218,17 @@ class Article
 
         if ($this->validate()) {
 
-            $sql = "INSERT INTO article (title, content, publisched_at) VALUES (:title, :content, :publisched_at)";
+            $sql = "INSERT INTO article (title, content, published_at) VALUES (:title, :content, :published_at)";
 
             $stmt = $conn->prepare($sql);
 
             $stmt->bindValue(':title', $this->title, PDO::PARAM_STR);
             $stmt->bindValue(':content', $this->content, PDO::PARAM_STR);
             if ($this->publisched_at == '') {
-                $stmt->bindValue(':publisched_at', null, PDO::PARAM_NULL);
+                $stmt->bindValue(':published_at', null, PDO::PARAM_NULL);
 
             } else {
-                $stmt->bindValue(':publisched_at', $this->publisched_at, PDO::PARAM_STR);
+                $stmt->bindValue(':published_at', $this->publisched_at, PDO::PARAM_STR);
             }
 
             if ($stmt->execute()) {
@@ -242,7 +245,7 @@ class Article
     public static function getTotal($conn, $only_publisched = false)
     {
 
-        $condition = $only_publisched ? ' WHERE publisched_at IS NOT NULL' : '';
+        $condition = $only_publisched ? ' WHERE published_at IS NOT NULL' : '';
 
         return $conn->query("SELECT  COUNT(*) FROM article$condition")->fetchColumn();
 
@@ -264,18 +267,18 @@ class Article
     public function publish($conn)
     {
 
-        $sql = "UPDATE article SET publisched_at = :publisched_at WHERE id = :id";
+            $sql = "UPDATE article SET published_at = :published_at WHERE id = :id";
 
-        $stmt = $conn->prepare($sql);
+            $stmt = $conn->prepare($sql);
 
-        $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
+            $stmt->bindValue(':id', $this->id, PDO::PARAM_INT);
 
-        $publisched_at = date("Y-m-d H:i:s");
-        $stmt->bindValue(':publisched_at', $publisched_at, PDO::PARAM_STR);
+            $publisched_at = date("Y-m-d H:i:s");
+            $stmt->bindValue(':published_at', $publisched_at, PDO::PARAM_STR);
 
-        if ($stmt->execute()) {
-            return $publisched_at;
-        }
+            if ($stmt->execute()) {
+                return $publisched_at;
+            }
     }
 
 

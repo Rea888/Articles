@@ -12,14 +12,14 @@
 
 <nav>
     <ul>
-        <li><a href="/article/articles_main.php">Home</a></li>
+        <li><a href="/articles_main.php">Home</a></li>
         <?php if (Auth::isLoggedIn()) : ?>
 
-            <li><a href="/article/admin/articles_main.php">Admin</a></li>
-            <li><a href="/article/logout.php">Log out</a></li>
+            <li><a href="/admin/articles_main.php">Admin</a></li>
+            <li><a href="/logout.php">Log out</a></li>
         <?php else : ?>
 
-            <li><a href="/article/login.php">Log in</a></li>
+            <li><a href="/login.php">Log in</a></li>
         <?php endif; ?>
     </ul>
 </nav>
